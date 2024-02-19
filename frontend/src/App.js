@@ -1,14 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 import React from 'react';
-import Login from './Login';
-import Landing from './Landing';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Landing from './pages/Landing';
 
 function App() {
   return (
-    <div className="app-container" class="centered">
-      <Login />
-    </div>
+     <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Landing />} />
+      </Routes>
+    </Router>
   );
 }
 
