@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
+import '../styles/Landing.css';
 
 const Landing = () => {
     return (
