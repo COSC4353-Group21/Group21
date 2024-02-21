@@ -3,39 +3,85 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1708162664567-49732d4b39c7?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Add your image path */
+    background: url('../img/oilRigField.png'); /* Adjust your image path */
     background-size: cover;
     background-position: center;
 }
 
 .login-container {
-    background: rgba(255, 255, 255, 0.2); /* White background with 80% opacity */
-    backdrop-filter: blur(10px); /* Add a blur effect */
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
     color: #333;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-.login-container form,
-.login-container h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 300px; /* You might want to adjust this to accommodate inline style */
 }
 
-.login-container label,
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label {
+    margin-top: 10px;
+    margin-bottom: 5px; /* Adjust spacing as needed */
+    width: 100%;
+    display: block; /* Ensure labels are block level for consistent alignment */
+}
+
 .login-container input {
-    margin: 10px 0;
+    padding: 10px;
+    margin-bottom: 20px; /* Space below each input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* This ensures padding is included in the width */
 }
 
+/* Style the button to match the inputs */
 .login-container button {
     padding: 10px;
     background: #3498db;
-    color: #fff;
+    color: white;
     cursor: pointer;
     border: none;
     border-radius: 4px;
+    margin-top: 10px; /* Space above the button */
+    box-sizing: border-box;
 }
 
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group label {
+    margin-right: 10px; /* Adjust based on your design */
+}
+
+.input-group input {
+    flex-grow: 1;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 0.8em;
+  }
+  
+  .register-link a {
+    color: #3498db; /* Match the button color for consistency */
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline; /* Optional: adds an underline on hover */
+  }
