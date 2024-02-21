@@ -4,9 +4,11 @@ import "../styles/Landing.css";
 
 const Landing = () => {
   return (
-    <div className="landing-container">
-      <Navbar />
-      <div className="landing-content">
+    <div className="landing-page">
+      <div className="nav">
+        <Navbar />
+      </div>
+      <div className="landing-container">
         <h1>Welcome to Your Website</h1>
         <p>Discover amazing things here!</p>
       </div>

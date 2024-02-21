@@ -1,20 +1,20 @@
-.landing-container {
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: url('../img/oilRigField.png');
     /* Add your image path */
     background-size: cover;
     background-position: center;
     height: 100vh;
-    padding-top: 20px;
 }
 
-.landing-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.nav {
+    position: fixed;
+    top: 30px;
 }
 
-
-.profile-container {
+.landing-container {
     background: rgba(255, 255, 255, 0.5);
     /* White background with 80% opacity */
     backdrop-filter: blur(10px);
@@ -27,83 +27,4 @@
     /* Use the full width of the .profile-container */
     max-width: 600px;
     /* Set a max-width to keep it from getting too wide */
-}
-
-.profile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.profile-title {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #333;
-}
-
-.edit-button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.edit-button:hover {
-    background-color: #0056b3;
-}
-
-.profile-info {
-    margin-bottom: 1rem;
-}
-
-.profile-info label {
-    font-weight: bold;
-    margin-right: 0.5rem;
-}
-
-.profile-info span {
-    color: #666;
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.input-group label {
-    /* Ensure that label width is consistent */
-    width: 30%;
-    min-width: 120px;
-    /* Adjust as needed for your layout */
-    text-align: right;
-    margin-right: 1rem;
-    /* Adjust spacing as needed */
-}
-
-.input-group span,
-.input-group input {
-    /* Make span and input take up the remaining space */
-    width: 70%;
-    min-width: 200px;
-    /* Adjust as needed for your layout */
-}
-
-.input-group span {
-    /* Style the span to align it with the input fields */
-    display: block;
-    padding: 10px;
-    background: transparent;
-    border: 1px solid transparent;
-    /* Hide border when not editing */
-    border-radius: 4px;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
