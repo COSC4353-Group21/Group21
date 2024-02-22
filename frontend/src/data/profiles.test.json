@@ -1,0 +1,20 @@
+{
+    "profiles":[
+        {
+            "name": "Renu Khator", 
+            "address1": "4800 Calhoun Rd", 
+            "address2": "SW101",
+            "city": "Houston",
+            "state":"TX",
+            "zipcode": "77004"
+        },
+        { 
+            "name": "John Doe",
+            "address1": "123 Main St",
+            "address2": "",
+            "city": "Houston",
+            "state":"TX",
+            "zipcode": "77004"
+        }
+    ]
+}

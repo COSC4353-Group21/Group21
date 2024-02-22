@@ -1,0 +1,127 @@
+:root {
+  --background: rgba(255, 255, 255, 0.5);
+  --primary-color: #007bff;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh;
+    background: url('../img/oilRigField.png'); /* Update with your own image */
+    background-size: cover;
+    background-position: center;
+  }
+
+#title {
+  text-align: center;
+}
+.container {
+  background: var(--background);
+  backdrop-filter: blur(10px);
+  margin: 10rem auto;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  overflow-y: auto;
+}
+.container input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.container button {
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.account-header {
+  display: flex;
+  align-items: center; /* Centers items vertically */
+}
+.account-header h3 {
+  margin-right: 10px;
+}
+.login-field td {
+  padding-right: 10px;
+}
+.login-field p {
+  margin: 10px auto;
+}
+
+
+.profile-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-block,
+.profile-form {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  justify-content: space-between;
+}
+.profile-block {
+  width: 50%;
+}
+.profile-form {
+  width: 75%;
+}
+.profile-name {
+  display: flex;
+  align-items: center; /* Centers items vertically */
+  justify-content: space-between;
+}
+.profile-name p,
+.profile-name h3 {
+  font-weight: bold;
+  margin: 2px;
+}
+.profile-name button {
+  justify-content: right;
+}
+.profile-address p {
+  font-style: italic;
+  margin: 0px;
+}
+
+#clientInfo input {
+  width: 30%;
+}
+#address input {
+  width: 50%;;
+}
+.section input,
+.section select {
+    display: flex;
+    width: 50%;
+    margin: 1rem 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/* Inline fields for city, state, and zip */
+.inline-fields {
+    display: flex;
+    justify-content: left;
+}
+
+.inline-fields input,
+.inline-fields select {
+    width: 30%;
+    flex-grow: 1;
+    margin-right: 10px; /* Add space between inline fields */
+    margin-top: 0;
+}

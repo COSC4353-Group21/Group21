@@ -1,0 +1,54 @@
+:root {
+  --background: rgba(255, 255, 255, 0.5);
+  --primary-color: #007bff;
+}
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../img/oilRigField.png'); /* Update with your own image */
+    background-size: cover;
+    background-position: center;
+  }
+  
+.register-container {
+  background: var(--background);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.register-section input,
+.register-section button {
+  padding: 0.5rem;
+  margin-bottom: 1rem; /* Add this to input only if you want space between the elements */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.register-section input {
+  margin-bottom: 1rem; /* Space between input fields and the button */
+  width: 15rem;
+}
+
+.register-section button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 50%;
+}
