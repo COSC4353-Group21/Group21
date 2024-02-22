@@ -15,7 +15,6 @@ const Account = () => {
   }
   const saveLoginClick = () => {
     setEditLogin(false);
-    setLoginInfo();
   }
 
   const [createProfile, setCreateProfile] = useState(false);
