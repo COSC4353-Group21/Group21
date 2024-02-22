@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Account.css'; // Ensure you have the styles for the form
 import Profile from './Profile';
+import Navbar from "../Navbar";
 
 const Account = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -42,10 +43,11 @@ const Account = () => {
     setProfiles(updatedProfiles);
     setEditProfileIndex(null); // Reset the index to stop editing
   };
-
-
   return (
     <div className="page">
+      <div className="nav">
+            <Navbar />
+        </div>
       <div className="container">
         <h2 id="title">Account Settings</h2>
           <div className="login-info">

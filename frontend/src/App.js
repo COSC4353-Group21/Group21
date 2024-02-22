@@ -6,6 +6,7 @@ import Landing from './pages/Landing';
 import Profile from './pages/Account';
 import Register from './pages/Register';
 import QuoteHistory from './pages/QuoteHistory';
+import FuelQuote from './pages/FuelQuote';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/history" element={<QuoteHistory />} />
+        <Route path="/quote" element={<FuelQuote />} />
       </Routes>
     </Router>
   );
