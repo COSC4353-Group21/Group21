@@ -4,23 +4,11 @@ import '../styles/Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Authentication logic goes here
-        navigate('/profile');
+        navigate('/home');
     };
 
     return (
@@ -30,19 +18,13 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
-                        id="email"
                         name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
                         placeholder="Email" // Set the placeholder here
                         required
                     />
                     <input
                         type="password"
-                        id="password"
                         name="password"
-                        value={formData.password}
-                        onChange={handleInputChange}
                         placeholder="Password" // And here
                         required
                     />

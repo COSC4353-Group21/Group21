@@ -1,90 +1,83 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Profile.css'; // Ensure you have the styles for the form
+import '../styles/Account.css'; // Ensure you have the styles for the form
+import data from '../data/site.json';
 
-const Profile = () => {
-  const navigate = useNavigate();
-  const [profile, setProfile] = useState({
-    name: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '', // You can manage this with a dropdown in actual implementation
-    zipcode: ''
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfile(prevProfile => ({
-      ...prevProfile,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Submit logic here
-    console.log('Profile data submitted:', profile);
-    // navigate('/dashboard'); // Redirect to dashboard or profile view page if needed
+const Profile = ({ profile, saveProfile }) => {
+  const [editedProfile, setEditedProfile] = useState(profile);
+  
+  const saveProfileClick = (e) => {
+    console.log(e)
+    // e.preventDefault();
+    console.log('Profile data submitted:', editedProfile);
+    saveProfile(editedProfile)
   };
 
   return (
-    <div className="profile-page">
-      <div className="profile-container">
-        <h2>Profile Information</h2>
-        <form onSubmit={handleSubmit}>
-          <input
+    <form className="profile-form" onSubmit={saveProfileClick}>
+    <div className="section" id="clientInfo">
+        <div className="profile-name">
+            <h3>Client Information</h3>
+            <button type="submit">Save Profile</button>
+        </div>
+        <input
             type="text"
             name="name"
-            value={profile.name}
-            onChange={handleInputChange}
-            placeholder="Full Name"
+            id="name"
+            defaultValue={!profile ? '': profile.name}
+            placeholder="Full Name*"
+            maxLength={50}
             required
-          />
-          <input
+        />
+    </div>
+    <div className="section" id="address">
+        <h3>Address</h3>
+        <input
             type="text"
             name="address1"
-            value={profile.address1}
-            onChange={handleInputChange}
-            placeholder="Address 1"
+            defaultValue={!profile ? '': profile.address1}
+            placeholder="Address 1*"
+            maxLength={100}
             required
-          />
-          <input
+        />
+        <input
             type="text"
             name="address2"
-            value={profile.address2}
-            onChange={handleInputChange}
+            defaultValue={!profile ? '': profile.address2}
             placeholder="Address 2"
-          />
-          <input
-            type="text"
-            name="city"
-            value={profile.city}
-            onChange={handleInputChange}
-            placeholder="City"
-            required
-          />
-          <select
-            name="state"
-            value={profile.state}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="">State</option>
-            {/* List of states or options here */}
-          </select>
-          <input
-            type="text"
-            name="zipcode"
-            value={profile.zipcode}
-            onChange={handleInputChange}
-            placeholder="Zipcode"
-            required
-          />
-          <button type="submit">Save Profile</button>
-        </form>
-      </div>
+            maxLength={100}
+        />
+        <div className="inline-fields">
+            <input
+                type="text"
+                name="city"
+                defaultValue={!profile ? '': profile.city}
+                placeholder="City*"
+                maxLength={100}
+                required
+            />
+            <select 
+                name="state"
+                defaultValue={!profile ? '': profile.state}
+                required
+                >
+                <option defaultValue="">State</option>
+                {data.states.map(state => (
+                    <option key={state} value={state}>{state}</option>
+                ))}
+            </select>
+            <input
+                type="number"
+                name="zipcode"
+                defaultValue={!profile ? '': profile.zipcode}
+                pattern="\d*"
+                placeholder="Zipcode*"
+                maxLength={9}
+                minLength={5}
+                required
+            />
+        </div>
     </div>
+    </form>
   );
 };
 

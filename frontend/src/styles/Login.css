@@ -1,3 +1,8 @@
+:root {
+    --background: rgba(255, 255, 255, 0.5);
+    --primary-color: #007bff;
+  }
+
 .login-page {
     display: flex;
     justify-content: center;
@@ -9,7 +14,7 @@
 }
 
 .login-container {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--background);
     backdrop-filter: blur(10px);
     color: #333;
     padding: 20px;
@@ -49,7 +54,7 @@
 /* Style the button to match the inputs */
 .login-container button {
     padding: 10px;
-    background: #3498db;
+    background: var(--primary-color);
     color: white;
     cursor: pointer;
     border: none;
@@ -78,7 +83,7 @@
   }
   
   .register-link a {
-    color: #3498db; /* Match the button color for consistency */
+    color: var(--primary-color);
     text-decoration: none;
   }
   
