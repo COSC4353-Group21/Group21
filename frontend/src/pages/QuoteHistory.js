@@ -1,9 +1,13 @@
 import React from 'react';
 import "../styles/QuoteHistory.css";
+import Navbar from "../Navbar";
 
 const QuoteHistory = ({ quotes }) => {
     return (
       <div className="history-page"> 
+            <div className="nav">
+        <Navbar />
+      </div>
         <div className="history-container">
           <center>
             <h2>FUEL QUOTE HISTORY</h2> {}
