@@ -1,5 +1,5 @@
 .history-container {
-    background: rgba(255, 255, 255, 0.2); /* White background with 80% opacity */
+    background: rgba(255, 255, 255, 0.5); /* White background with 80% opacity */
     backdrop-filter: blur(10px); /* Add a blur effect */
     color: #333;
     padding: 80px;
