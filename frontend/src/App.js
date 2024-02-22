@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Landing from './pages/Landing';
 import Profile from './pages/Account';
 import Register from './pages/Register';
+import QuoteHistory from './pages/QuoteHistory';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Landing />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/history" element={<QuoteHistory />} />
       </Routes>
     </Router>
   );
