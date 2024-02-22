@@ -9,8 +9,10 @@ const Landing = () => {
         <Navbar />
       </div>
       <div className="landing-container">
-        <h1>Welcome to Your Website</h1>
-        <p>Discover amazing things here!</p>
+        <div className="landing-content">
+          <h1>Welcome to Group21</h1>
+          <p>Use the navigation bar above to get started...</p>
+        </div>
       </div>
     </div>
   );
