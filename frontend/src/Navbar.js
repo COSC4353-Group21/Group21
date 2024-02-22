@@ -13,7 +13,7 @@ const Navbar = () => {
             <a href="/home">Home</a>
           </li>
           <li>
-            <a href="/data-table">Data Table</a>
+            <a href="/quote">Data Table</a>
           </li>
           <li>
             <a href="/history">History</a>
