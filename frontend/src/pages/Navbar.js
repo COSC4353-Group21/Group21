@@ -1,25 +1,23 @@
 import React from "react";
-import "./styles/Navbar.css";
+import Logo from "../img/logo-light.png";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
     <div className="nav-container">
       <nav className="nav">
         <a href="/home" className="site-title">
-          Group21
+          <img className="navbar-logo" src={Logo} alt="" />PRDX
         </a>
-        <ul>
+        <ul className="navbar-list">
           <li>
-            <a href="/home">Home</a>
-          </li>
-          <li>
-            <a href="/quote">Data Table</a>
+            <a href="/quote">Data</a>
           </li>
           <li>
             <a href="/history">History</a>
           </li>
           <li>
-            <a href="profile">Profile</a>
+            <a href="/profile">Profile</a>
           </li>
           <li>
             <a href="/login">Logout</a>

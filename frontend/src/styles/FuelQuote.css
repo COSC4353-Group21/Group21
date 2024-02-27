@@ -1,13 +1,27 @@
 .quote-container {
-    background: rgba(255, 255, 255, 0.5); /* White background with 80% opacity */
-    backdrop-filter: blur(10px); /* Add a blur effect */
-    color: #333;
-    padding: 80px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    align-items: center;
-    font-size: 20px;
+  background: var(--container-background);
+  backdrop-filter: blur(10px);
+  padding: 80px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  align-items: center;
+  font-size: 20px;
+  animation: fadeIn 0.5s ease forwards;
+}
+.quote-container input {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.quote-container button {
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /*.tablebox {
@@ -18,20 +32,27 @@
 }*/
 
 .quote-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    background-image: url('../img/oilRigField.png'); /* Add your image path */
-    background-size: cover;
-    background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url("../img/background.webp"); /* Add your image path */
+  background-size: cover;
+  background-position: center;
+  color: var(--text-color);
 }
 
 .entry-box {
-    padding: 8px;
-    margin-bottom: 10px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-
-
+  to {
+    opacity: 1;
+  }
+}
