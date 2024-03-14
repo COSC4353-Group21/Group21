@@ -30,3 +30,7 @@ create user 'app' identified by 'test_password';
 -- Granting necessarily data-modification privileges to 'app'
 grant insert, delete, select, update on cosc4353group21.* to 'app';
 commit;c
+CREATE TABLE quote (
+        client_username varchar(16) NOT NULL,
+        date date NOT NULL,
+        gallons integer NOT NULL CHECK(gallons > 0),
