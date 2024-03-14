@@ -24,13 +24,27 @@ CREATE TABLE profile (
         PRIMARY KEY(client_username),
         FOREIGN KEY(client_username) REFERENCES users(username)
 );
+CREATE TABLE quote (
+        client_username varchar(16) NOT NULL,
+        date date NOT NULL,
+        gallons integer NOT NULL CHECK(gallons > 0),
+        price  decimal(10,2) NOT NULL,
+        due decimal(10,2) NOT NULL,
+        address varchar(160) NOT NULL,
+        city varchar(50) NOT NULL,
+        state  char(2) NOT NULL,
+        zipcode  char(5) NOT NULL CHECK(zipcode REGEXP '^[0-9]{5}$' ),
+        FOREIGN KEY(client_username) REFERENCES users(username)
+);
+create table sessions (
+		username varchar(16) not null,
+        token varchar(512) not null,
+        primary key(username, token),
+        foreign key(username) references users(username)
+);
 commit;
 -- Create a role 'app' and login for the backend to use on the database
 create user 'app' identified by 'test_password';
 -- Granting necessarily data-modification privileges to 'app'
 grant insert, delete, select, update on cosc4353group21.* to 'app';
-commit;c
-CREATE TABLE quote (
-        client_username varchar(16) NOT NULL,
-        date date NOT NULL,
-        gallons integer NOT NULL CHECK(gallons > 0),
+commit;
