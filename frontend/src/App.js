@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
-import Profile from "./pages/Account";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import QuoteHistory from "./pages/QuoteHistory";
 import FuelQuote from "./pages/FuelQuote";
@@ -22,7 +22,7 @@ function App() {
     // </div>
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Landing />} />
         <Route path="/profile" element={<Profile />} />
