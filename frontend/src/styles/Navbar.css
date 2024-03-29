@@ -20,6 +20,21 @@
   color: var(--text-color);
 }
 
+.navbar-list li:not(:last-child){
+  margin-right: 0;
+}
+.navbar-list button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: bold;
+  line-height: inherit; 
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+}
 .navbar-list a {
   color: inherit;
   text-decoration: none;

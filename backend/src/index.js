@@ -1,13 +1,13 @@
 const express = require('express')
 const cors = require('cors')
-/*const {
+const {
     generateFuelQuote,
     submitFuelQuote,
     getQuoteHistory, } = require('./fuelquotes')
 const {
   generateProfile, 
   getProfile, 
-  updateProfile } = require('./profile')*/
+  updateProfile } = require('./profile')
 const {
   generate_token,
   validate_token,
@@ -98,7 +98,7 @@ app.post('/api/login', async (req, res) => {
       msg: 'The login was successful',
     })
   } catch (e) {
-    res.status(400).json({ msg: 'Error: Invalid login' })
+    res.status(400).json({ msg: e.message })
   }
 })
 
@@ -126,13 +126,12 @@ app.post('/api/logout', async (req, res) => {
 
 app.post('/api/register', async (req, res) => {
   try {
-    const { username, password, email, phone } = req.body
+    const { username, password} = req.body
     let success = await create_user(username, password)
     success = await generateProfile(username)
-    success = await updateProfile(username, { email, phone })
     res.status(200).json({ msg: 'Success' })
   } catch (e) {
-    res.status(400).json({ msg: e })
+    res.status(400).json({ msg: e.message })
   }
 })
 
@@ -160,20 +159,19 @@ app.get('/api/profile/:username', async (req, res) => {
   }
 })
 
-app.post('/api/profile/edit', async (req, res) => {
+app.post('/api/profile', async (req, res) => {
   let token = undefined
   try {
     token = req.headers['authorization'].split(' ')[1]
   } catch (e) {
-    res.status(400).json({ msg: 'Error: Invalid login' })
+    res.status(400).json({ msg: e.message })
     return
   }
   if (!await validate_token(req.body.username, token)) {
-    res.status(400).json({ msg: 'Error: Invalid login' })
+    res.status(400).json({ msg: `Error: no username "${req.body.username}" found` })
   } else {
-    // we would use updateProfile to edit the profile
-    const { fullname, email, address1, address2, city, state, zipcode, phone } = req.body
-    const newProfile = { full_name: fullname, email, address1, address2, city, state, zipcode, phone }
+    const { fullname, address1, address2, city, state, zipcode } = req.body
+    const newProfile = { full_name: fullname, address1, address2, city, state, zipcode }
     const updatedProfile = await updateProfile(req.body.username, newProfile)
     res.status(200).json(updatedProfile)
   }

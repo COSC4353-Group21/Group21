@@ -1,8 +1,10 @@
 // Login module skeleton
+const { initializeQuoteHistory } = require('./fuelquotes')
 const jwt = require('jsonwebtoken');
+const SHA256 = require('crypto-js/sha256');
+const Base64 = require('crypto-js/enc-base64');
 const { knexClient } = require('./knexClient');
 
-// TODO make this crypto secure!
 const token_secret = 'secrettoken';
 
 const username_validate = (username) => {
@@ -59,13 +61,11 @@ const token_is_invalid = async (token) => {
 const generate_token = async (username, password) => {
     // Validate that the username and password are in agreement
     // TODO implement a database lookup to do this
-    //const is_valid = users.get(username) === password;
-    //if (!is_valid) {
     const valid_user = await is_valid(username, password);
     if (!valid_user) {
         throw new Error('Invalid user or password');
     }
-    const token = jwt.sign({ username: username}, token_secret, { expiresIn: 1800 });
+    const token = jwt.sign({ username: username}, token_secret, { expiresIn: 30 * 60 * 1000 });
     return token;
 };
 
@@ -74,17 +74,18 @@ const validate_token = async (username, token) => {
         return false;
     }
     try {
-        const payload = jwt.verify(token, token_secret, { expiresIn: 1800 });
+        const payload = jwt.verify(token, token_secret, { expiresIn: 30 * 60 * 1000 });
         return username === payload.username;
     }
     catch (e) {
+        console.log(e)
         return false;
     }
 };
 
 const invalidate_token = async (username, token) => {
     try {
-        const payload = jwt.verify(token, token_secret, { expiresIn: 1800 });
+        const payload = jwt.verify(token, token_secret, { expiresIn: 30 * 60 * 1000 });
         if (username !== payload.username) {
             throw Error('Cannot invalidate an invalid token!');
         }

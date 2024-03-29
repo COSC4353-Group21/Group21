@@ -1,8 +1,29 @@
-import React from "react";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { clientWithAuth } from '../services/axiosClient'
+
 import Logo from "../img/logo-light.png";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
+  const handleLogout = async () => {
+    const username = localStorage.getItem('username')
+    if (!token) {
+      localStorage.clear()
+      navigate('/login')
+    }
+    await clientWithAuth(token)
+      .post('/logout', { username })
+      .then((response) => {})
+      .catch((error) => {
+        console.log(error)
+      })
+    localStorage.clear()
+    navigate('/')
+  }
   return (
     <div className="nav-container">
       <nav className="nav">
@@ -19,9 +40,15 @@ const Navbar = () => {
           <li>
             <a href="/profile">Profile</a>
           </li>
-          <li>
-            <a href="/login">Logout</a>
+          {token ? (
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          ) : (
+            <li>
+            <a href="/login">Login</a>
           </li>
+          )}
         </ul>
       </nav>
     </div>
