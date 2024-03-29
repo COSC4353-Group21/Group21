@@ -174,7 +174,7 @@ const FuelQuote = () => {
                 id='delivery_address'
                 name='delivery_address'
                 placeholder='Address'
-                value={profile.address1 + ', ' + profile.address2}
+                value={!profile.address2 ? profile.address1 : profile.address1 + ', ' + profile.address2}
                 readOnly
                 />
               </td>
