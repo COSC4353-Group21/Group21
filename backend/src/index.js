@@ -127,20 +127,16 @@ app.post('/api/logout', async (req, res) => {
 app.post('/api/register', async (req, res) => {
   try {
     const { username, password} = req.body
-    // console.log({username, password })
     let success = await create_user(username, password)
     success = await generateProfile(username)
-    // success = await updateProfile(username, { email })
     res.status(200).json({ msg: 'Success' })
   } catch (e) {
-    // console.log(e.message)
     res.status(400).json({ msg: e.message })
   }
 })
 
 app.get('/api/profile/:username', async (req, res) => {
   const { username } = req.params
-  // console.log('/api/profile/:username', req.params)
   let token = undefined
   try {
     token = req.headers['authorization'].split(' ')[1]
@@ -165,22 +161,15 @@ app.get('/api/profile/:username', async (req, res) => {
 
 app.post('/api/profile', async (req, res) => {
   let token = undefined
-  // console.log('/api/profile',req.body)
   try {
     token = req.headers['authorization'].split(' ')[1]
-    // token = await generate_token(req.body.username);
-    // console.log('got token')
   } catch (e) {
     res.status(400).json({ msg: e.message })
     return
   }
   if (!await validate_token(req.body.username, token)) {
-    // console.log('Error: no username',await validate_token(req.body.username, token))
-    // console.log('Error: no username', req.body.username)
     res.status(400).json({ msg: `Error: no username "${req.body.username}" found` })
   } else {
-    // we would use updateProfile to edit the profile
-    // console.log('/api/profile. updating profile')
     const { fullname, address1, address2, city, state, zipcode } = req.body
     const newProfile = { full_name: fullname, address1, address2, city, state, zipcode }
     const updatedProfile = await updateProfile(req.body.username, newProfile)

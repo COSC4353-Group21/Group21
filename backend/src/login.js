@@ -5,8 +5,7 @@ const SHA256 = require('crypto-js/sha256');
 const Base64 = require('crypto-js/enc-base64');
 const { knexClient } = require('./knexClient');
 
-// TODO make this crypto secure!
-const token_secret = 'mysecretkeylol';
+const token_secret = 'secrettoken';
 
 const username_validate = (username) => {
     // Validate the the username does not include any illegal characters and is the required length
