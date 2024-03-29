@@ -3,6 +3,11 @@ import "../styles/QuoteHistory.css";
 import Navbar from "./Navbar";
 import Footer from './Footer';
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+})
+
 const QuoteHistory = ({ quotes }) => {
   return (
     <div className="history-page">
@@ -17,22 +22,32 @@ const QuoteHistory = ({ quotes }) => {
           <table>
             <thead>
               <tr>
-                <th>Gallons Requested</th>
-                <th>Delivery Address</th>
-                <th>Delivery Date</th>
-                <th>Suggested Price Per Gallon</th>
+                <th>Date</th>
+                <th>Gallons</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zipcode</th>
+                <th>Suggested Price</th>
                 <th>Total Amount Due</th>
               </tr>
             </thead>
             <tbody>
-              {/* Placeholder row for demonstration purposes */}
-              <tr>
-                <td>No data</td>
-                <td>No data</td>
-                <td>No data</td>
-                <td>No data</td>
-                <td>No data </td>
-              </tr>
+
+            {quotes.map((value, key) => {
+              return (
+                <tr key={key}>
+                  <td>{value.date}</td>
+                  <td>{value.gallons}</td>
+                  <td>{value.address}</td>
+                  <td>{value.city}</td>
+                  <td>{value.state }</td>
+                  <td>{value.zipcode}</td>
+                  <td>{formatter.format(value.price)}</td>
+                  <td>{formatter.format(value.due)}</td>
+                </tr>
+              )
+            })}
             </tbody>
           </table>
         </div>
