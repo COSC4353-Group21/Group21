@@ -22,14 +22,18 @@ const QuoteHistory = ({ quotes }) => {
           <table>
             <thead>
               <tr>
-                <th>Gallons Requested</th>
-                <th>Delivery Address</th>
-                <th>Delivery Date</th>
-                <th>Suggested Price Per Gallon</th>
+                <th>Date</th>
+                <th>Gallons</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zipcode</th>
+                <th>Suggested Price</th>
                 <th>Total Amount Due</th>
               </tr>
             </thead>
             <tbody>
+
             {quotes.map((value, key) => {
               return (
                 <tr key={key}>
