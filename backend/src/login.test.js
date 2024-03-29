@@ -2,7 +2,7 @@ const { knexClient } = require('./knexClient');
 const { generate_token, validate_token, invalidate_token, create_user } = require('./login');
 
 const valid_user = {
-    username: 'abraar',
+    username: 'ilan',
     password: 'FancyTest12',
     hashed_password: '3J9YmiYMzPzLfr3h96c4O/vKGjZuDwhpJo05wSJOZls='
 };
@@ -11,7 +11,7 @@ const invalid_user = {
     password: 'DubiousPassword13',
 };
 const bad_password = {
-    username: 'abraar',
+    username: 'ilan',
     password: 'NotRightPassword13',
 };
 const fake_token = 'obviousfaketoken';

@@ -50,7 +50,7 @@ describe('Pricing Module', () => {
       'Houston',
       'TX',
       '77001',
-      'dosbol'
+      'ilan'
     )
     const suggestedPrice = await delivery.getPricePerGallon()
     expect(suggestedPrice).toBeCloseTo(1.71, 3)
