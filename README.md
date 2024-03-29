@@ -41,7 +41,6 @@ Members: Thien Pham, Ilan Lipsky, Russell Farinha, Rachel Collier
    - For the frontend:
      ```bash
      cd frontend
-     npm install react-router-dom@latest
      npm install
      ```
    - For the backend:
