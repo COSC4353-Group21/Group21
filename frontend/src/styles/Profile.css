@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../img/background.webp"); /* Update with your own image */
+  background: url("../img/oilRigField.png"); /* Update with your own image */
   background-size: cover;
   background-position: center;
   color: var(--text-color);

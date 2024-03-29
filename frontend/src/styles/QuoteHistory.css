@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("../img/background.webp"); /* Add your image path */
+  background-image: url("../img/oilRigField.png"); /* Add your image path */
   background-size: cover;
   background-position: center;
   color: var(--text-color);
