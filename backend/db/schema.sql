@@ -1,5 +1,5 @@
 -- Deinitialize everything if it is setup
-drop user if exists 'app';
+drop user if exists 'root';
 drop database if exists cosc4353group21;
 commit;
 -- Initialize the database
@@ -14,13 +14,11 @@ CREATE TABLE users (
 CREATE TABLE profile (
         client_username  varchar(16) NOT NULL CHECK(client_username REGEXP '^[a-zA-Z0-9]{3,}$'),
         full_name varchar(50),
-        email varchar(50) NOT NULL CHECK(email REGEXP '^[[:alnum:]]+([\.-]?[[:alnum:]]+)*@\[[:alnum:]]+([\.-]?[[:alnum:]]+)*(\.[[:alnum:]]{2,3})+$'),
         address1 varchar(80),
         address2 varchar(80),
         city varchar(50),
         state char(2),
         zipcode char(5) CHECK(zipcode IS NULL OR (zipcode REGEXP '^[0-9]{5}$')),
-        phone char(10) NOT NULL CHECK(phone REGEXP '[0-9]{10}'),
         PRIMARY KEY(client_username),
         FOREIGN KEY(client_username) REFERENCES users(username)
 );
@@ -43,8 +41,8 @@ create table sessions (
         foreign key(username) references users(username)
 );
 commit;
--- Create a role 'app' and login for the backend to use on the database
-create user 'app' identified by 'test_password';
--- Granting necessarily data-modification privileges to 'app'
-grant insert, delete, select, update on cosc4353group21.* to 'app';
+-- Create a role 'root' and login for the backend to use on the database
+create user 'root' identified by 'password';
+-- Granting necessarily data-modification privileges to 'root'
+grant insert, delete, select, update on cosc4353group21.* to 'root';
 commit;

@@ -1,8 +1,9 @@
+
+const mysql = require('mysql2');
 const knex = require('knex');
 require('dotenv').config();
 
-// Configuration for the MySQL client
-// Do not modify the values here; use the .env file at the project root
+const node_env = process.env.NODE_ENV;
 
 const mySQLConnection = {
     host: process.env.MYSQL_HOST,

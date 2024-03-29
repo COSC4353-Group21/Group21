@@ -1,54 +1,140 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { client } from '../services/axiosClient'
+
 import "../styles/Register.css"; // Make sure to create and import a corresponding CSS file
 import Navbar from "./Navbar";
 import Footer from './Footer';
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmpassword, setConfirmPassword] = useState('')
+  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [passwordValidations, setPasswordValidations] = useState({
+    minLength: false,
+    oneUpperCase: false,
+    oneLowerCase: false,
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value)
+  }
+  const allRequirementsMet = passwordValidations.minLength && passwordValidations.oneUpperCase && passwordValidations.oneLowerCase;
+  const handlePasswordChange = (e) => {
+    const { value } = e.target;
+    setPassword(value);
+    setPasswordValidations({
+      minLength: value.length >= 8,
+      oneUpperCase: /[A-Z]/.test(value),
+      oneLowerCase: /[a-z]/.test(value),
+      oneNumber: /[\d]/.test(value)
     });
   };
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value)
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would handle the registration logic
-    console.log(formData);
-    navigate("/login"); // Redirect the user to a different route after registration
-  };
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault()
+    if (password !== confirmpassword) {
+      alert('Passwords do not match!')
+      return
+    }
+    if (!allRequirementsMet) {
+      alert('Password does not meet all requirements!')
+      return
+    }
+
+    await client
+      .post('/register', { username, password, confirmpassword })
+      .then(async (response) => {
+        await client
+        .post('/login', { username, password })
+        .then((response) => {
+          localStorage.clear()
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('username', username)
+        })
+        .catch((error) => {
+          if (error?.response?.status === 400) {
+            alert(error.response.data.msg)
+            navigate('/login')
+          }
+          return
+        })
+        navigate('/home')
+      })
+      .catch((error) => {
+        if (error?.response?.status === 400) {
+          alert(error.response.data.msg)
+        }
+        return
+      })
+    
+  }
+
+  if (token) {
+    navigate('/profile')
+  }
 
   return (
     <div className="register-page">
       <Navbar/>
       <div className="register-container">
         <h2>Create Account</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleRegisterSubmit}>
           <div className="register-section">
             <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="Email*"
+              type="text"
+              id="user"
+              name="user"
+              onChange={handleUsernameChange}
+              placeholder="Username*"
               required
             />
+            <div className="input-container">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                onChange={handlePasswordChange}
+                placeholder="Password*"
+                required
+                onFocus={() => setPasswordFocused(true)}
+                onBlur={() => setPasswordFocused(false)}
+              />
+              {passwordFocused && !allRequirementsMet && (
+                <div className={`password-requirements ${passwordFocused ? (allRequirementsMet ? 'fadeOut' : 'fadeIn') : 'fadeOut'}`}>
+                  <ul>
+                  <li className={passwordValidations.minLength ? "valid" : "invalid"}>
+                    {passwordValidations.minLength ? "✔" : "✘"} At least 8 characters
+                  </li>
+                  <li className={passwordValidations.oneUpperCase ? "valid" : "invalid"}>
+                    {passwordValidations.oneUpperCase ? "✔" : "✘"} One uppercase letter
+                  </li>
+                  <li className={passwordValidations.oneLowerCase ? "valid" : "invalid"}>
+                    {passwordValidations.oneLowerCase ? "✔" : "✘"} One lowercase letter
+                  </li>
+                    <li className={passwordValidations.oneNumber ? "valid" : "invalid"}>
+                      {passwordValidations.oneNumber ? "✔" : "✘"}  One number
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
             <input
               type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              placeholder="Password*"
+              id="confirmpassword"
+              name="confirmpassword"
+              onChange={handleConfirmPasswordChange}
+              placeholder="Confirm Password*"
               required
             />
+
             <p className="register-link">
               By signing up, you agree to our
               <br />
