@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { clientWithAuth } from './axiosClient'
+import { clientWithAuth } from '../services/axiosClient'
 import '../styles/FuelQuote.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
