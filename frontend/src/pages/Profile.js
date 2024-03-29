@@ -28,9 +28,6 @@ const Profile = () => {
 
   const [editLogin, setEditLogin] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
-  const toggleEditLogin = () => {
-    setEditLogin(!editLogin);
-  };
   const handleEditProfileClick = () => {
     setEditProfile(true);
   };
