@@ -13,7 +13,7 @@ const db_setup = () =>
     await trx('quote').del()
     await trx('users').del()
     await trx('users').insert({
-      username: 'ilan',
+      username: 'dosbol',
       password: '3J9YmiYMzPzLfr3h96c4O/vKGjZuDwhpJo05wSJOZls=',
     })
   })
@@ -59,7 +59,7 @@ describe('The Fuel Quote Module', () => {
   })
 
   test('should generate a fuel quote for a user with complete profile and valid gallons requested', async () => {
-    const result = await generateFuelQuote('ilan', 150)
+    const result = await generateFuelQuote('dosbol', 150)
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -75,7 +75,7 @@ describe('The Fuel Quote Module', () => {
   })
 
   test('should submit the fuel quote for the user', async () => {
-    const result = await submitFuelQuote('ilan', 150, '2023-03-31')
+    const result = await submitFuelQuote('dosbol', 150, '2023-03-31')
     expect(result.success).toBe(true)
     expect(result.message).toBe('Fuel quote submitted successfully!')
   })
@@ -83,17 +83,17 @@ describe('The Fuel Quote Module', () => {
   test('should throw an error when profile is incomplete', async () => {
     profile.zipcode = null
 
-    return expect(generateFuelQuote('ilan', 150)).rejects.toThrow()
+    return expect(generateFuelQuote('dosbol', 150)).rejects.toThrow()
   })
 
   test('should throw an error when gallons requested is invalid', async () => {
-    return expect(generateFuelQuote('ilan', -10)).rejects.toThrow()
+    return expect(generateFuelQuote('dosbol', -10)).rejects.toThrow()
   })
 
   test('should add the new quote to the quote history', async () => {
     profile.zipcode = '77097'
-    await submitFuelQuote('ilan', 150, '2023-03-31')
-    const result = await getQuoteHistory('ilan')
+    await submitFuelQuote('dosbol', 150, '2023-03-31')
+    const result = await getQuoteHistory('dosbol')
 
     expect(result.length).toBe(1)
     expect(result[0]).toEqual(
