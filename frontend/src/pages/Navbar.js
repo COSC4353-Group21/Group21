@@ -1,34 +1,35 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { clientWithAuth } from '../services/axiosClient'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { clientWithAuth } from "../services/axiosClient";
 
 import Logo from "../img/logo-light.png";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
-
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  //clear the storage and navigate to login page when logout is clicked
   const handleLogout = async () => {
-    const username = localStorage.getItem('username')
+    const username = localStorage.getItem("username");
     if (!token) {
-      localStorage.clear()
-      navigate('/login')
+      localStorage.clear();
+      navigate("/login");
     }
     await clientWithAuth(token)
-      .post('/logout', { username })
+      .post("/logout", { username })
       .then((response) => {})
       .catch((error) => {
-        console.log(error)
-      })
-    localStorage.clear()
-    navigate('/')
-  }
+        console.log(error);
+      });
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <div className="nav-container">
       <nav className="nav">
         <a href="/home" className="site-title">
-          <img className="navbar-logo" src={Logo} alt="" />PRDX
+          <img className="navbar-logo" src={Logo} alt="" />
+          PRDX
         </a>
         <ul className="navbar-list">
           <li>
@@ -46,8 +47,8 @@ const Navbar = () => {
             </li>
           ) : (
             <li>
-            <a href="/login">Login</a>
-          </li>
+              <a href="/login">Login</a>
+            </li>
           )}
         </ul>
       </nav>
