@@ -25,12 +25,14 @@ const formatter = new Intl.NumberFormat('en-US', {
       console.log(response.data.quotes);
       setQuotes(response.data.quotes);
     }).catch((error) => {
-      if (error.response && error.response.status === 400)
+      if (!token)
       {
         navigate('/login');
       }
-      alert('Quote server is down, try again later');
-      navigate('/');
+      //else {
+      //alert('Quote server is down, try again later');
+      //navigate('/');
+    //}
     });
   }, [])
   
