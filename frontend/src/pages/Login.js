@@ -1,55 +1,54 @@
-import { React, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { client } from '../services/axiosClient'
+import { React, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { client } from "../services/axiosClient";
 
 import "../styles/Login.css";
 
 import Navbar from "./Navbar";
-import Footer from './Footer';
+import Footer from "./Footer";
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value)
-  }
+    setUsername(e.target.value);
+  };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-
+    setPassword(e.target.value);
+  };
+  //call api to get and validate the username and password
   const handleLoginSubmit = async (e) => {
-    e.preventDefault()
-    //e.reportValidity();
+    e.preventDefault();
     await client
-      .post('/login', { username, password })
+      .post("/login", { username, password })
       .then((response) => {
-        localStorage.clear()
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('username', username)
-        localStorage.setItem('password', password)
-        navigate('/profile')
+        localStorage.clear();
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+        navigate("/profile");
       })
       .catch((error) => {
-        console.log('login failed')
-        console.log(error)
+        console.log("login failed");
+        console.log(error);
         if (error.response && error?.response?.status === 400) {
-          alert(error.response.data.msg)
-          navigate('/login')
+          alert(error.response.data.msg);
+          navigate("/login");
         }
-      })
-  }
-
+      });
+  };
+  //if the user is already logged in, redirect to profile page
   if (token) {
-    navigate('/profile')
+    navigate("/profile");
   }
 
   return (
     <div className="login-page">
-      <Navbar/>
+      <Navbar />
       <div className="login-container">
         <h2>Login</h2>
         <form onSubmit={handleLoginSubmit}>
@@ -73,7 +72,7 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
