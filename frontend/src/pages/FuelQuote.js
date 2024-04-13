@@ -16,7 +16,7 @@ import Footer from './Footer';
 */
 
 
-
+// Set default currency format to USD
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -42,6 +42,7 @@ const FuelQuote = () => {
     due: '...',
   })
 
+  // Error validation check functions
   const handleCheckFormValid = () => {
     if (gallons !== '' && date !== '') {
       setFormValid(true)
@@ -71,7 +72,7 @@ const FuelQuote = () => {
   const handleQuoteSubmit = async (e) => {
     e.preventDefault()
     if (FormValid === false) {
-      alert('Please complete the form !!')
+      alert('Please complete the form!')
       return
     }
     // DEBUG
@@ -117,6 +118,10 @@ const FuelQuote = () => {
     }
   }, [])
 
+  // Creates form to gather user input for gallons requested, delivery date, delivery address. Uses handles
+  // for form submissions to do the following:
+  // 1) display suggested price and total amount due for fuel when user clicks GET QUOTE button.
+  // 2) send user data to backend when user clicks SUBMIT button
   return (
     <div className='quote-page'>
       <div className='nav'>
