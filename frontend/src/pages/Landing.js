@@ -20,9 +20,9 @@ const Landing = () => {
         <div className="landing-content">
           <h1>Thank you for choosing us</h1>
           <p>
-            Paradox&reg; Artificial Intelligence services work together to give
+            Paradox&reg; AI services work together to give
             you the knowledge and flexibility to predict your future spends —
-            whether you're travel far or not
+            whether you travel far or not
           </p>
           <button onClick={getStartedClick}>Submit new quote</button>
         </div>
